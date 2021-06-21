@@ -15,15 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="exercicio_circulo.c">
+    <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Circulo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ListaCirculo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="No.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circulo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListaCirculo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="No.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

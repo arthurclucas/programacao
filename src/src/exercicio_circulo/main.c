@@ -1,17 +1,19 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
-#include "circulo.h"
+#include "Circulo.h"
+#include "No.h"
+#include "ListaCirculo.h"
 #include <stdbool.h>
 
-int main()
+int main2()
 {
     float x, y, raio;
 
     printf("informe os valores do circulo (x e y do centro e a medida do raio) no formato 'x y r':\n");
     //Criar e exibir o círculo
     scanf("%f %f %f", &x, &y, &raio);
-    circulo* c = criar_circulo(x, y, raio);
+    Circulo* c = criar_circulo(x, y, raio);
     printf("dados do circulo\n");
     exibir_circulo(c);
 
@@ -46,4 +48,14 @@ int main()
     //liberar_circulo(c);
 
     return 0;
+}
+
+int main()
+{
+    Circulo* c1 = criar_circulo(2, 5, 3);
+    Circulo* c2 = criar_circulo(2, 6, 4);
+
+    Circulo* circulos[2] = { c1, c2 };
+
+    criar_lista(2, circulos);
 }

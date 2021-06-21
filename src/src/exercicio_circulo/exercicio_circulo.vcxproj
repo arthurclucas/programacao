@@ -140,10 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Circulo.c" />
-    <ClCompile Include="exercicio_circulo.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="ListaCirculo.c" />
+    <ClCompile Include="No.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circulo.h" />
+    <ClInclude Include="ListaCirculo.h" />
+    <ClInclude Include="No.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
