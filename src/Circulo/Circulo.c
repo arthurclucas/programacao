@@ -14,12 +14,13 @@ Circulo* criar_circulo(float x, float y, float raio)
     c->x = x;
     c->y = y;
     c->raio = raio;
+    c->area = calcular_area(c);
     return c;
 }
 
 void exibir_circulo(Circulo* c)
 {
-    printf("Circulo: [%2f,%2f,%2f]", c->x, c->y, c->raio);
+    printf("Circulo: [x: %2f,y: %2f,raio: %2f, area: %2f]", c->x, c->y, c->raio, c->area);
 }
 
 float calcular_perimetro(Circulo* c)

@@ -3,7 +3,7 @@
 
 typedef struct TCirculo
 {
-    float x, y, raio;
+    float x, y, raio, area;
 
 } Circulo;
 

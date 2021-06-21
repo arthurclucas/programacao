@@ -27,3 +27,4 @@ void remover_final(ListaCirculo* lst);
 void remover_meio(ListaCirculo* lst, int pos);
 ListaCirculo* concatenar(ListaCirculo* lst1, ListaCirculo* lst2);
 void liberar_lista(ListaCirculo** lst);
+void inserir_primeiro(ListaCirculo* lst, Circulo* c);

@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClCompile Include="Circulo.c" />
     <ClCompile Include="ListaCirculo.c" />
+    <ClCompile Include="ListaCirculoOrdenada.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="No.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circulo.h" />
     <ClInclude Include="ListaCirculo.h" />
+    <ClInclude Include="ListaCirculoOrdenada.h" />
     <ClInclude Include="No.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

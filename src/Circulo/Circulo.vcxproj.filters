@@ -27,6 +27,9 @@
     <ClCompile Include="ListaCirculo.c">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="ListaCirculoOrdenada.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circulo.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ListaCirculo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListaCirculoOrdenada.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

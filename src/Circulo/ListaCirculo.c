@@ -12,6 +12,7 @@ ListaCirculo* criar_lista(int capacidadeMaxima)
 	ListaCirculo* lst = malloc(sizeof(ListaCirculo));
 	lst->capacidade = capacidadeMaxima;
 	lst->quantidade = 0;
+	return lst;
 }
 
 void* exibir_lista(ListaCirculo* lst)

@@ -3,6 +3,7 @@
 #include "Circulo.h"
 #include "No.h"
 #include "ListaCirculo.h"
+#include "ListaCirculoOrdenada.h"
 
 Circulo* random_circulo() 
 {
@@ -21,6 +22,19 @@ ListaCirculo* random_lista_cheia(int capacidade)
     {
         Circulo* c = random_circulo();
         inserir_final(lst, c);
+    }
+
+    return lst;
+}
+
+ListaCirculo* random_lista_cheia_ordenada(int capacidade)
+{
+    ListaCirculo* lst = criar_lista(capacidade);
+
+    for (int i = 0; i < capacidade; i++)
+    {
+        Circulo* c = random_circulo();
+        inserir_ordenado(lst, c);
     }
 
     return lst;
@@ -85,5 +99,20 @@ int main()
     exibir_lista(lst);
     printf("Concatenando\n");
     ListaCirculo* lstConcat = concatenar(lst, lst2);
-    exibir_lista(lstConcat);   
+    exibir_lista(lstConcat);
+
+    qtd = random_int();
+    printf("Criando uma terceira lista com %2d elementos para concatenar ordenadamente\n", qtd);
+    ListaCirculo* lst3 = random_lista_cheia_ordenada(qtd);
+    exibir_lista(lst3);
+    printf("\n");
+
+    qtd = random_int();
+    printf("Criando uma quarta lista com %2d elementos para concatenar ordenadamente\n", qtd);
+    ListaCirculo* lst4 = random_lista_cheia_ordenada(qtd);
+    exibir_lista(lst4);
+    printf("\n");
+
+    ListaCirculo* lst5 = merge(lst3, lst4);
+    
  }
