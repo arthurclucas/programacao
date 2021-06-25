@@ -42,10 +42,10 @@ ListaCirculo* random_lista_cheia_ordenada(int capacidade)
 
 int random_int() 
 {
-    int qtd = rand() % 10;
+    int qtd = rand() % 6;
 
-    while (qtd < 5)
-        qtd = rand() % 10;
+    while (qtd < 3)
+        qtd = rand() % 6;
 
     return qtd;
 }
@@ -113,6 +113,8 @@ int main()
     exibir_lista(lst4);
     printf("\n");
 
-    ListaCirculo* lst5 = merge(lst3, lst4);
-    
+    printf("Terceira e quarta listas ordenadas concatenadas de forma ordenada\n");
+    ListaCirculo* lst5 = concatenar_ordenado(lst3, lst4);
+    exibir_lista(lst5);
+    printf("\n");    
  }

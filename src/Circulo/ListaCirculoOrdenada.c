@@ -87,7 +87,7 @@ void remover_elemento(ListaCirculo* lst, Circulo* c)
 	}
 }
 
-ListaCirculo* merge(ListaCirculo* lst1, ListaCirculo* lst2) 
+ListaCirculo* concatenar_ordenado(ListaCirculo* lst1, ListaCirculo* lst2) 
 {
 	if (esta_vazia(lst1))
 		return lst2;
@@ -102,7 +102,7 @@ ListaCirculo* merge(ListaCirculo* lst1, ListaCirculo* lst2)
 			No* noLst1 = lst1->primeiro;
 			No* noLst2 = lst2->primeiro;
 
-			while (noLst1 != NULL && noLst2 == NULL)
+			while (noLst1 != NULL || noLst2 != NULL)
 			{				
 				int noInserir = 0;
 
