@@ -10,8 +10,11 @@
 ListaCirculo* criar_lista(int capacidadeMaxima)
 {
 	ListaCirculo* lst = malloc(sizeof(ListaCirculo));
-	lst->capacidade = capacidadeMaxima;
+	lst->capacidade = 0;
 	lst->quantidade = 0;
+
+	lst->capacidade = capacidadeMaxima;
+
 	return lst;
 }
 
@@ -31,6 +34,8 @@ void* exibir_lista(ListaCirculo* lst)
 			no = no->proximo;
 		}
 	}
+
+	return 0;
 }
 
 bool esta_cheia(ListaCirculo* lst) 
