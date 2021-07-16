@@ -11,8 +11,10 @@ No* criar_no(Circulo* c)
 	return no;
 }
 
-void ligar_no(No* anterior, No* proximo)
+int ligar_no(No* anterior, No* proximo)
 {
 	anterior->proximo = proximo;
 	proximo->anterior = anterior;
+
+	return 2;
 }

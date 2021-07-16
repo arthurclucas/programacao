@@ -58,171 +58,260 @@ int capacidade(ListaCirculo* lst)
 	return lst->capacidade;
 }
 
-esvaziar(ListaCirculo* lst)
+int esvaziar(ListaCirculo* lst)
 {
 	lst->primeiro = NULL;
 	lst->ultimo = NULL;
 	lst->quantidade = 0;
+
+	return 3;
 }
 
-No* buscar_elemento(ListaCirculo* lst, int pos)
+No* buscar_elemento(ListaCirculo* lst, int pos, int *iteracoes)
 {
+	iteracoes++;
 	if (lst->quantidade < pos)
 		return lst->ultimo;
 	else
 	{
+		iteracoes++;
 		No* retorno = lst->primeiro;
 
 		for (int i = 1; i < pos; i++)
+		{
 			retorno = retorno->proximo;
-
+			iteracoes = iteracoes + 3;
+		}
+			
 		return retorno;
 	}
 }
 
-void inserir_primeiro(ListaCirculo* lst, Circulo* c) 
+int inserir_primeiro(ListaCirculo* lst, Circulo* c) 
 {
+	int iteracoes;
+	
 	No* unico = criar_no(c);
+	iteracoes = 4;
 
 	lst->primeiro = unico;
+	iteracoes++;
 	lst->ultimo = unico;
+	iteracoes++;
 	lst->quantidade = lst->quantidade + 1;
+	iteracoes++;
+
+	return iteracoes;
 }
 
-void inserir_inicio(ListaCirculo* lst, Circulo* c)
+int inserir_inicio(ListaCirculo* lst, Circulo* c)
 {
+	int iteracoes = 1;
 	if (esta_vazia(lst))
 		inserir_primeiro(lst, c);
 	else
 	{
+		iteracoes++;
 		if (esta_cheia(lst)) 
 			printf("Nao e possivel inserir, pois a lista esta cheia");
 		else
 		{
 			No* primeiro = lst->primeiro;
+			iteracoes++;
+
 			No* novoPrimeiro = criar_no(c);
-			primeiro->anterior = novoPrimeiro;
-			novoPrimeiro->proximo = primeiro;
+			iteracoes++;
+			
+			iteracoes = iteracoes + ligar_no(novoPrimeiro, primeiro);
+						
 			lst->primeiro = novoPrimeiro;
+			iteracoes++;
+
 			lst->quantidade = lst->quantidade + 1;
+			iteracoes++;
 		}
 	}
+
+	return iteracoes;
 }
 
-void inserir_final(ListaCirculo* lst, Circulo* c)
+int inserir_final(ListaCirculo* lst, Circulo* c)
 {
+	int iteracoes = 1;
 	if (esta_vazia(lst))
 		inserir_primeiro(lst, c);
 	else
 	{
+		iteracoes++;
 		if (esta_cheia(lst))
 			printf("Nao e possivel inserir, pois a lista esta cheia");
 		else
-		{
-			No* ultimo = lst->ultimo;
-			No* novoUltimo = criar_no(c);
-			ultimo->proximo = novoUltimo;
-			novoUltimo->anterior = ultimo;
-			lst->ultimo = novoUltimo;
-			lst->quantidade = lst->quantidade + 1;
-		}
+			iteracoes = iteracoes + inserir_ultimo(lst, c);
 	}
+
+	return iteracoes;
 }
 
-void inserir_meio(ListaCirculo* lst, Circulo* c, int pos)
+int inserir_ultimo(ListaCirculo* lst, Circulo* c)
 {
+	int iteracoes = 0;
+
+	No* ultimo = lst->ultimo;
+	iteracoes++;
+	No* novoUltimo = criar_no(c);
+	iteracoes++;
+
+	iteracoes = iteracoes + ligar_no(ultimo, novoUltimo);
+	
+	lst->ultimo = novoUltimo;
+	iteracoes++;
+
+	lst->quantidade = lst->quantidade + 1;
+	iteracoes++;
+
+	return iteracoes;
+}
+
+int inserir_meio(ListaCirculo* lst, Circulo* c, int pos)
+{
+	int iteracoes = 1;
 	if (esta_vazia(lst))
-		inserir_primeiro(lst, c);
+		iteracoes += inserir_primeiro(lst, c);
 	else 
 	{
+		iteracoes++;
 		if (lst->quantidade < pos)
-			inserir_final(lst, c);
+			iteracoes += inserir_final(lst, c);
 		else
 		{
+			iteracoes++;
 			if (esta_cheia(lst))
 				printf("Nao e possivel inserir, pois a lista esta cheia");
 			else
 			{
-				No* depois = buscar_elemento(lst, pos);
+				No* depois = buscar_elemento(lst, pos, iteracoes);
+				
 				No* antes = depois->anterior;
-				No* meio = criar_no(c);
+				iteracoes++;
 
-				ligar_no(antes, meio);
-				ligar_no(meio, depois);
+				No* meio = criar_no(c);
+				iteracoes = iteracoes + 4;
+
+
+				iteracoes += ligar_no(antes, meio);
+				iteracoes += ligar_no(meio, depois);
+
 				lst->quantidade = lst->quantidade + 1;
+				iteracoes++;
 			}
 		}
-	}					
+	}
+
+	return iteracoes;
 }
 
-void remover_inicio(ListaCirculo* lst)
+int remover_inicio(ListaCirculo* lst)
 {
+	int iteracoes = 1;
 	if (!esta_vazia(lst))
 	{
+		iteracoes++;
 		if (lst->quantidade == 1)
-			esvaziar(lst);
+			iteracoes += esvaziar(lst);
 		else 
 		{
 			No* novoPrimeiro = lst->primeiro->proximo;
+			iteracoes++;
+
 			lst->primeiro = novoPrimeiro;
+			iteracoes++;
+
 			novoPrimeiro->anterior = NULL;
+			iteracoes++;
+
 			lst->quantidade = lst->quantidade - 1;
+			iteracoes++;
 		}
 	}
+
+	return iteracoes;
 }
 
-void remover_final(ListaCirculo* lst)
+int remover_final(ListaCirculo* lst)
 {
+	int iteracoes = 1;
 	if (!esta_vazia(lst))
 	{
+		iteracoes++;
 		if (lst->quantidade == 1)
-			esvaziar(lst);
+			iteracoes += esvaziar(lst);
 		else
 		{
 			No* novoUltimo = lst->ultimo->anterior;
+			iteracoes++;
+
 			lst->ultimo = novoUltimo;
+			iteracoes++;
+
 			novoUltimo->proximo = NULL;
+			iteracoes++;
+
 			lst->quantidade = lst->quantidade - 1;
+			iteracoes++;
 		}
 	}
+
+	return iteracoes;
 }
 
-void remover_meio(ListaCirculo* lst, int pos)
+int remover_meio(ListaCirculo* lst, int pos)
 {
+	int iteracoes = 1;
 	if (!esta_vazia(lst))
 	{
+		iteracoes++;
 		if (lst->quantidade == 1)
-			esvaziar(lst);
+			iteracoes += esvaziar(lst);
 		else
 		{
 			if (pos >= lst->quantidade)
-				remover_final(lst);
+				iteracoes += remover_final(lst);
 			else
 			{
-				No* remover = buscar_elemento(lst, pos);
-				ligar_no(remover->anterior, remover->proximo);
+				No* remover = buscar_elemento(lst, pos, iteracoes);
+				iteracoes += ligar_no(remover->anterior, remover->proximo);
+				
 				lst->quantidade = lst->quantidade - 1;
+				iteracoes++;
 			}
 		}
 	}
+
+	return iteracoes;
 }
 
-ListaCirculo* concatenar(ListaCirculo* lst1, ListaCirculo* lst2)
+ListaCirculo* concatenar(ListaCirculo* lst1, ListaCirculo* lst2, int* iteracoes)
 {
+	iteracoes++;
 	if (esta_vazia(lst1))
 		return lst2;
 	else
 	{
+		iteracoes++;
 		if (esta_vazia(lst2))
 			return lst1;
 		else
 		{
+			iteracoes++;
 			if (lst2->quantidade > (lst1->capacidade - lst1->quantidade))
 				lst1->capacidade = lst1->quantidade + lst2->quantidade;
 
-			ligar_no(lst1->ultimo, lst2->primeiro);
+			iteracoes += ligar_no(lst1->ultimo, lst2->primeiro);
+
 			lst1->quantidade = lst1->quantidade + lst2->quantidade;
-			esvaziar(lst2);
+			iteracoes++;
+
+			iteracoes += esvaziar(lst2);
 			return lst1;
 		}
 	}

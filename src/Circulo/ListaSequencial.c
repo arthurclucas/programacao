@@ -59,16 +59,19 @@ void inserir_inicio(ListaSequencial* lst, Circulo* c)
 	}
 }
 
-void inserir_final(ListaSequencial* lst, Circulo* c)
+int inserir_final(ListaSequencial* lst, Circulo* c)
 {
+	int iteracoes = 1;
 	if (esta_cheia(lst))
-		printf("Não é possível inserir pois a lista está cheia");
+		printf("Não é possível inserir pois a lista está cheia");		
 	else
 		lst->vetor[lst->qtd] = c;
+
+	return iteracoes;
 }
 
 void inserir_meio(ListaSequencial* lst, Circulo* c, int pos)
-{	
+{
 	if (pos > lst->qtd)
 		printf("A lista possui menos elementos que a posição em que se está querendo inserir o elemento");
 
@@ -80,27 +83,35 @@ void inserir_meio(ListaSequencial* lst, Circulo* c, int pos)
 	lst->vetor[pos] = c;
 }
 
-void inserir_ordenado(ListaSequencial* lst, Circulo* c)
+int inserir_ordenado(ListaSequencial* lst, Circulo* c)
 {
+	int iteracoes = 1;
 	if (esta_cheia(lst))
 		printf("A lista esta cheia e não é mais possível inserir elementos");
 	else
 	{
+		iteracoes++;
 		if (esta_vazia(lst))
 			inserir_primeiro(lst, c);
 		else
 		{			
+			iteracoes++;
 			if (lst->vetor[lst->qtd - 1]->raio < c->raio)
 				inserir_final(lst, c);
 
 			int pos = 0;
 
 			while (lst->vetor[pos]->raio < c->raio)
+			{
+				iteracoes++;
 				pos++;
+			}				
 
-			inserir_meio(lst, c, pos);
+			lst->vetor[pos] = c;
 		}
 	}
+
+	return iteracoes;
 }
 
 void remover_inicio(ListaSequencial* lst)

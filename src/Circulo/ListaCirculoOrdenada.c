@@ -7,43 +7,56 @@
 #include <stdbool.h>
 #include <math.h>
 
-void inserir_ordenado(ListaCirculo* lst, Circulo* c)
+int inserir_ordenado(ListaCirculo* lst, Circulo* c)
 {
+	int iteracoes = 1;
 	if (esta_cheia(lst))
 	{
 		printf("Nao e possivel inserir, pois a lista ja esta cheia");
 	}
 	else
 	{
+		iteracoes++;
 		if (esta_vazia(lst))
-			inserir_inicio(lst, c);
+			iteracoes += inserir_primeiro(lst, c);
 		else
 		{
+			iteracoes++;
 			if (lst->primeiro->conteudo->area > c->area)
-				inserir_inicio(lst, c);
+				iteracoes += inserir_primeiro(lst, c);
 			else
 			{
+				iteracoes++;
 				No* no = lst->primeiro;
 
 				while (no->conteudo->area < c->area && no->proximo != NULL)
-					no = no->proximo;
-
-				if (no->proximo == NULL)
-					inserir_final(lst, c);
-				else
 				{
-					No* novoNo = criar_no(c);
-					
-					if (no->proximo != NULL)
-						ligar_no(novoNo, no->proximo);
+					no = no->proximo;
+					iteracoes++;
+				}
 
-					ligar_no(no, novoNo);
+				iteracoes++;
+				if (no->proximo == NULL)
+					iteracoes =+ inserir_ultimo(lst, c);
+				else
+				{					
+					No* novoNo = criar_no(c);
+					iteracoes = iteracoes + 4;
+					
+					iteracoes++;
+					if (no->proximo != NULL)
+						iteracoes += ligar_no(novoNo, no->proximo);
+
+					iteracoes += ligar_no(no, novoNo);
 
 					lst->quantidade = lst->quantidade + 1;
+					iteracoes++;
 				}
 			}
 		}
 	}
+
+	return iteracoes;
 }
 
 No* busca_sequencial(ListaCirculo* lst, int area)

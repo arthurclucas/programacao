@@ -11,4 +11,4 @@ struct TNo
 };
 
 No* criar_no(Circulo* c);
-void ligar_no(No* anterior, No* proximo);
+int ligar_no(No* anterior, No* proximo);
