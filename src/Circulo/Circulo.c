@@ -6,7 +6,7 @@
 
 Circulo* criar_circulo(float x, float y, float raio)
 {
-    Circulo* c = malloc(sizeof(Circulo)); // retorna NULL se alocação falhar	
+    Circulo* c = malloc(sizeof(Circulo)); // retorna NULL se alocação falhar
 
     if (c == NULL)
         return NULL;
